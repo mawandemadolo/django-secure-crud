@@ -20,7 +20,16 @@
   <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{%url 'list'%}">Employee Management</a>
+        <a class="navbar-brand" href="/employees/">Employee Datastore</a>
+        {% if user.is_authenticated %}
+        <div class="navbar-nav ms-auto">
+          <span class="navbar-text me-3">Welcome, {{ user.username }}!</span>
+          <form method="post" action="{% url 'logout' %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+          </form>
+        </div>
+        {% endif %}
       </div>
     </nav>
 
