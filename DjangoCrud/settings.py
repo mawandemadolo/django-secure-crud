@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'employee',
     'accounts',
     'crispy_forms',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'DjangoCrud.middleware.SecurityHeadersMiddleware',
     'DjangoCrud.middleware.InputValidationMiddleware',
@@ -168,6 +170,27 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
 # Email configuration for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@employeedatastore.com'
+
+# CORS configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React/Next.js dev server
+    "http://127.0.0.1:3000",
+    "http://localhost:8080",  # Vue.js dev server
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # Logging configuration
 LOGGING = {
